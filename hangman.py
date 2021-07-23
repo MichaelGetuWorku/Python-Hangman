@@ -1,30 +1,102 @@
 # Step 1
 
 import random
+stages = ['''
+  +---+
+  |   |
+  O   |
+ /|\  |
+ / \  |
+      |
+=========
+''', '''
+  +---+
+  |   |
+  O   |
+ /|\  |
+ /    |
+      |
+=========
+''', '''
+  +---+
+  |   |
+  O   |
+ /|\  |
+      |
+      |
+=========
+''', '''
+  +---+
+  |   |
+  O   |
+ /|   |
+      |
+      |
+=========''', '''
+  +---+
+  |   |
+  O   |
+  |   |
+      |
+      |
+=========
+''', '''
+  +---+
+  |   |
+  O   |
+      |
+      |
+      |
+=========
+''', '''
+  +---+
+  |   |
+      |
+      |
+      |
+      |
+=========
+''']
+
 word_list = ['ardvark', 'baboon', 'camel']
 print('---------------------------------')
-print('Welcome to the Hand Man!')
-# TODO:1 Randomly choose a word from the wordList and assign it to a variable calles chosen_word
+print('Welcome to the Hang Man!')
+# Randomly choose a word from the wordList and assign it to a variable calles chosen_word
 chosen_word = random.choice(word_list)
+print(chosen_word)
 # or
 # chosen_word = random.randint(0, len(word_list) - 1)
 # loopWord = word_list[chosen_word]
 
-# TODO:4 so if the chosen_word was appel display should be "_" with 5 "_" reperesenting each letters to gusse
-# print(chosen_word)
-# the _ is if we are not using the variable
+lives = 6
 display = []
 
 for _ in range(0, len(chosen_word)):
     display += '_'
-# print(display)
 
-# TODO:2 Ask the user to guess letter and assign thire answer to a variable called gusse. make guess lowercase.
-guess = input('Guess the mistry letter: ').lower()
+end_of_game = False
+while not end_of_game:
+    guess = input('Guess the mistry letter: ').lower()
+    for position in range(len(chosen_word)):
+        letter = chosen_word[position]
+        if letter == guess:
+            display[position] = letter
+    # If guess is not a letter in the chosen_word,
+    # Then reduce 'lives' by 1.
+    # If lives goes down to 0 then the game should stop and it should print "You lose."
+    # Join all the elements in the list and turn it into a String.
+    if guess not in chosen_word:
+        lives -= 1
+        if lives == 0:
+            end_of_game = True
+            print('You Lost')
+    print(f"{' '.join(display)}")
+    if '_' not in display:
+        end_of_game = True
+        print('You Won')
+    # print the ASCII art from 'stages' that corresponds to the current number of 'lives' the user has remaining.
+    print(stages[lives])
 
-# TODO:3 check if the letter the user gussed is one of the letters in the chosen_word
-
-# TODO:5 if the user guessed "p" and the choosen word was apple the display should be ["_","p","p","_","_"]
 # ! Mine
 # secret_word = []
 # final_word = []
@@ -38,8 +110,8 @@ guess = input('Guess the mistry letter: ').lower()
 # print(final_word)
 
 # ! Angela
-for position in range(len(chosen_word)):
-  letter = chosen_word[position]
-  if letter == guess:
-    display[position] = letter
-print(display)
+    # for position in range(len(chosen_word)):
+    #     letter = chosen_word[position]
+    #     if letter == guess:
+    #         display[position] = letter
+    # print(display)
