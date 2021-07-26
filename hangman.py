@@ -45,21 +45,4 @@ while not end_of_game:
     # print the ASCII art from 'stages' that corresponds to the current number of 'lives' the user has remaining.
     print(hangman_art.stages[lives])
 
-# ! Mine
-# secret_word = []
-# final_word = []
-# for letter in chosen_word:
-#     if guess == letter:
-#       display = guess
-#     else:
-#       display = '_'
-#     secret_word = display
-#     final_word.extend(secret_word)
-# print(final_word)
 
-# ! Angela
-    # for position in range(len(chosen_word)):
-    #     letter = chosen_word[position]
-    #     if letter == guess:
-    #         display[position] = letter
-    # print(display)
